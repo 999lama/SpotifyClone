@@ -29,6 +29,7 @@
 		3BA3FFF328638C1B00F9524C /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA3FFEC28638C1B00F9524C /* PlaylistViewController.swift */; };
 		3BA3FFF428638C1B00F9524C /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA3FFED28638C1B00F9524C /* SearchResultViewController.swift */; };
 		3BA3FFF528638C1B00F9524C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA3FFEE28638C1B00F9524C /* ProfileViewController.swift */; };
+		3BA3FFF72863B12800F9524C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA3FFF62863B12800F9524C /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		3BA3FFEC28638C1B00F9524C /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		3BA3FFED28638C1B00F9524C /* SearchResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		3BA3FFEE28638C1B00F9524C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3BA3FFF62863B12800F9524C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				3BA3FFB628638B7200F9524C /* AppDelegate.swift */,
 				3BA3FFB828638B7200F9524C /* SceneDelegate.swift */,
 				3BA3FFBF28638B7300F9524C /* Assets.xcassets */,
+				3BA3FFF62863B12800F9524C /* Extensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -169,12 +172,12 @@
 			isa = PBXGroup;
 			children = (
 				3BA3FFE928638C1B00F9524C /* AuthViewController.swift */,
+				3BA3FFEB28638C1B00F9524C /* WelcomeViewController.swift */,
 				3BA3FFEA28638C1B00F9524C /* PlayerViewController.swift */,
 				3BA3FFEC28638C1B00F9524C /* PlaylistViewController.swift */,
 				3BA3FFEE28638C1B00F9524C /* ProfileViewController.swift */,
 				3BA3FFED28638C1B00F9524C /* SearchResultViewController.swift */,
 				3BA3FFE828638C1B00F9524C /* SettingsViewController.swift */,
-				3BA3FFEB28638C1B00F9524C /* WelcomeViewController.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				3BA3FFF228638C1B00F9524C /* WelcomeViewController.swift in Sources */,
 				3BA3FFEF28638C1B00F9524C /* SettingsViewController.swift in Sources */,
 				3BA3FFB728638B7200F9524C /* AppDelegate.swift in Sources */,
+				3BA3FFF72863B12800F9524C /* Extensions.swift in Sources */,
 				3BA3FFE628638C1100F9524C /* SearchViewController.swift in Sources */,
 				3BA3FFB928638B7200F9524C /* SceneDelegate.swift in Sources */,
 				3BA3FFCF28638BAD00F9524C /* APICaller.swift in Sources */,
