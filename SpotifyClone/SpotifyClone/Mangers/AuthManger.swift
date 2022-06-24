@@ -28,6 +28,8 @@ final class AuthManger {
         return URL(string: string)
     }
     
+    private var refreshingToken = false
+    
     var isSingedIn: Bool {
         return accessToken != nil
     }
@@ -43,7 +45,8 @@ final class AuthManger {
     private var tokenExpirationDate: Date? {
         return UserDefaults.standard.object(forKey: "expirationDate") as? Date
     }
-    
+    private var onRefreshBlocks = [((String) -> Void)]()
+
     private var sholdRefreshToken: Bool {
         // refresh token after couple of mins left to that token expires (refresh when 10 minutes left)
         guard let expirationDate = tokenExpirationDate else {
@@ -52,6 +55,26 @@ final class AuthManger {
         let currentDate = Date()
         let fiveMinutes: TimeInterval = 300
         return currentDate.addingTimeInterval(fiveMinutes) >= expirationDate
+    }
+    
+    /// Supplies vaild token to be used with API Calls
+    public func withVaildToken(completion: @escaping (String) -> Void) {
+        guard !refreshingToken else {
+            // append the completion
+            onRefreshBlocks.append(completion)
+            return
+        }
+        if sholdRefreshToken {
+            // refresh
+            refreshIfNeeded { [weak self] sucess in
+                    if let token = self?.accessToken, sucess {
+                       completion(token)
+                    }
+                }
+            }
+        else if let token = accessToken{
+           completion(token)
+        }
     }
     
     public func exchangeCodeForToken(code: String, completion: @escaping ((Bool) -> Void)) {
@@ -70,9 +93,7 @@ final class AuthManger {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         // set Headers
-        //Content-Type: application/x-www-form-urlencoded
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        //Authorization: Basic <base64 encoded client_id:client_secret>
         let basicToken = Constant.clientID+":"+Constant.clientSecret
         let data = basicToken.data(using: .utf8)
         guard let base64String = data?.base64EncodedString() else {
@@ -89,7 +110,6 @@ final class AuthManger {
                 return
             }
             do {
-                //                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
                 self?.cacheToken(result: result)
                 completion(true)
@@ -105,19 +125,21 @@ final class AuthManger {
     }
     
     public func refreshIfNeeded(completion: @escaping (Bool) -> Void) {
-//        guard sholdRefreshToken else {
-//            completion(true)
-//            return
-//        }
+
+        guard !refreshingToken else {
+            return
+        }
+        
         guard let refreshToken = self.refreshToken else {
             return
         }
         
         // refresh Token
-        // get token
          guard let url = URL(string: Constant.tokenAPIURL) else {
              return
          }
+        
+        refreshingToken =  true
          var component = URLComponents()
          component.queryItems = [
              URLQueryItem(name: "grant_type", value: "refresh_token"),
@@ -126,9 +148,7 @@ final class AuthManger {
          var request = URLRequest(url: url)
          request.httpMethod = "POST"
          // set Headers
-         //Content-Type: application/x-www-form-urlencoded
          request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-         //Authorization: Basic <base64 encoded client_id:client_secret>
          let basicToken = Constant.clientID+":"+Constant.clientSecret
          let data = basicToken.data(using: .utf8)
          guard let base64String = data?.base64EncodedString() else {
@@ -141,13 +161,15 @@ final class AuthManger {
          request.httpBody = component.query?.data(using: .utf8)
          
          let task = URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
+             self?.refreshingToken = false
              guard let data = data , error == nil else {
                  completion(false)
                  return
              }
              do {
                  let result = try JSONDecoder().decode(AuthResponse.self, from: data)
-                 print("Sucessfully refreshed")
+                 self?.onRefreshBlocks.forEach({$0(result.access_token) })
+                 self?.onRefreshBlocks.removeAll()
                  self?.cacheToken(result: result)
                  completion(true)
              } catch  {
@@ -155,9 +177,8 @@ final class AuthManger {
                  completion(false)
              }
          }
-         
+        
          task.resume()
-         
         
     }
     

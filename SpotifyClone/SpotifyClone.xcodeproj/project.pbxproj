@@ -31,6 +31,7 @@
 		3BA3FFF528638C1B00F9524C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA3FFEE28638C1B00F9524C /* ProfileViewController.swift */; };
 		3BA3FFF72863B12800F9524C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA3FFF62863B12800F9524C /* Extensions.swift */; };
 		CEBB6FC82865F1F900082783 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB6FC72865F1F900082783 /* AuthResponse.swift */; };
+		CEE8719D28662DE4003CA2D2 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE8719C28662DE4003CA2D2 /* SettingsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		3BA3FFEE28638C1B00F9524C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3BA3FFF62863B12800F9524C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CEBB6FC72865F1F900082783 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		CEE8719C28662DE4003CA2D2 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				3BA3FFD628638BCD00F9524C /* Playlist.swift */,
 				3BA3FFD728638BCD00F9524C /* UserProfile.swift */,
 				CEBB6FC72865F1F900082783 /* AuthResponse.swift */,
+				CEE8719C28662DE4003CA2D2 /* SettingsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				3BA3FFDA28638BCD00F9524C /* Playlist.swift in Sources */,
 				3BA3FFD928638BCD00F9524C /* AudioTrack.swift in Sources */,
 				3BA3FFF228638C1B00F9524C /* WelcomeViewController.swift in Sources */,
+				CEE8719D28662DE4003CA2D2 /* SettingsModel.swift in Sources */,
 				3BA3FFEF28638C1B00F9524C /* SettingsViewController.swift in Sources */,
 				3BA3FFB728638B7200F9524C /* AppDelegate.swift in Sources */,
 				3BA3FFF72863B12800F9524C /* Extensions.swift in Sources */,
