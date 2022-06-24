@@ -22,7 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navVc.navigationBar.prefersLargeTitles = true
             navVc.viewControllers.first?.navigationItem.largeTitleDisplayMode = .always
             window.rootViewController = navVc
-            
+        }
+        window.makeKeyAndVisible()
+        self.window = window
+        AuthManger.shared.refreshIfNeeded { sucess in
+            print(sucess)
         }
         return true
     }
