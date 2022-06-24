@@ -18,6 +18,8 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
         let webView = WKWebView(frame: .zero, configuration: config)
         return webView
     }()
+    
+    public var competionHandler: ((Bool) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()

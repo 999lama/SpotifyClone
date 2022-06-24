@@ -29,14 +29,26 @@ class WelcomeViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        singInButton.frame = CGRect(x: 20, y: 1, width: 200, height: 50)
+        singInButton.frame = CGRect(x: 20,
+                                    y: view.height-50-view.safeAreaInsets.bottom,
+                                    width: view.width-40,
+                                    height: 50)
         
     }
     
     @objc func didTapSignIn() {
         let vc = AuthViewController()
+        vc.competionHandler = { [weak self] (sucess) in
+            DispatchQueue.main.async {
+                self?.handleuserSignIn(sucess: sucess)
+            }
+
+        }
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    private func handleuserSignIn(sucess: Bool) {
+        // Log user in or yall at them for error
+    }
 }
