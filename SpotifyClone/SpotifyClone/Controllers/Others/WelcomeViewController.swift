@@ -30,7 +30,7 @@ class WelcomeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         singInButton.frame = CGRect(x: 20,
-                                    y: view.height-50-view.safeAreaInsets.bottom,
+                                    y:view.height-50-view.safeAreaInsets.bottom,
                                     width: view.width-40,
                                     height: 50)
         
@@ -42,7 +42,6 @@ class WelcomeViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.handleuserSignIn(sucess: sucess)
             }
-
         }
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)

@@ -90,12 +90,12 @@
 		3BA3FFB528638B7200F9524C /* SpotifyClone */ = {
 			isa = PBXGroup;
 			children = (
+				3BA3FFCA28638B9300F9524C /* Resources */,
 				3BA3FFDD28638BEF00F9524C /* Controllers */,
 				3BA3FFDC28638BD000F9524C /* Viwes */,
 				3BA3FFD328638BC000F9524C /* Models */,
 				3BA3FFD228638BB100F9524C /* ViewModels */,
 				3BA3FFCB28638BA200F9524C /* Mangers */,
-				3BA3FFCA28638B9300F9524C /* Resources */,
 				3BA3FFC428638B7300F9524C /* Info.plist */,
 			);
 			path = SpotifyClone;
