@@ -8,8 +8,9 @@
 import UIKit
 import WebKit
 
-class AuthViewController: UIViewController, WKNavigationDelegate {
+class AuthViewController: UIViewController {
     
+    //MARK: - UI Elments
     private let webView: WKWebView = {
         let perfs = WKWebpagePreferences()
         perfs.allowsContentJavaScript = true
@@ -19,8 +20,10 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
         return webView
     }()
     
+    //MARK: - Properties
     public var competionHandler: ((Bool) -> Void)? //onec user sucessfuly sign in
-
+    
+    //MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Sign In"
@@ -33,12 +36,16 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
         webView.load(URLRequest(url: url))
     }
     
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         webView.frame = view.bounds
     }
+    
+}
 
+//MARK: - WKNavigationDelegate
+extension AuthViewController: WKNavigationDelegate {
+    
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         guard let url = webView.url else {
             return
@@ -56,7 +63,5 @@ class AuthViewController: UIViewController, WKNavigationDelegate {
                 self?.competionHandler?(success)
             }
         }
-        
     }
-
 }

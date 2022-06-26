@@ -9,6 +9,12 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+
+    //MARK: - UI Elments
+    //TODO: Add UI Elemnts here
+    
+    
+    //MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Home"
@@ -19,6 +25,7 @@ class HomeViewController: UIViewController {
                                                                                 action: #selector(didTapSettings))
     }
     
+    //MARK: - @objc actions methods
     @objc func didTapSettings() {
         let vc = SettingsViewController()
         vc.title = "Settings"

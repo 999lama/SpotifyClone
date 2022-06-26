@@ -9,6 +9,13 @@ import Foundation
 
 final class AuthManger {
     
+    //MARK: - shared propety
+    static let shared = AuthManger()
+    
+    //MARK: - init
+    private init() {}
+    
+    //MARK: - Constants
     struct Constant {
         static let clientID = "b41919e6ec654ab5a51bed4a8af12bb9"
         static let clientSecret = "4819fa1fd6fe4041a8978dd18e01b4e5"
@@ -17,18 +24,17 @@ final class AuthManger {
         static let scopes = "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-follow-read%20user-library-modify%20user-library-read%20user-read-email"
     }
     
-    static let shared = AuthManger()
+    //MARK: - Properies
+    private var refreshingToken = false
+    private var onRefreshBlocks = [((String) -> Void)]()
     
-    private init() {}
-    
+    //MARK: - Computed Properties
     public var signInURL: URL? {
         let base = "https://accounts.spotify.com/authorize"
         let string = "\(base)?response_type=code&client_id=\(Constant.clientID)&scope=\(Constant.scopes)&redirect_uri=\(Constant.redirectURI)&show_dialog=TRUE"
         
         return URL(string: string)
     }
-    
-    private var refreshingToken = false
     
     var isSingedIn: Bool {
         return accessToken != nil
@@ -45,8 +51,7 @@ final class AuthManger {
     private var tokenExpirationDate: Date? {
         return UserDefaults.standard.object(forKey: "expirationDate") as? Date
     }
-    private var onRefreshBlocks = [((String) -> Void)]()
-
+    
     private var sholdRefreshToken: Bool {
         // refresh token after couple of mins left to that token expires (refresh when 10 minutes left)
         guard let expirationDate = tokenExpirationDate else {
@@ -67,18 +72,19 @@ final class AuthManger {
         if sholdRefreshToken {
             // refresh
             refreshIfNeeded { [weak self] sucess in
-                    if let token = self?.accessToken, sucess {
-                       completion(token)
-                    }
+                if let token = self?.accessToken, sucess {
+                    completion(token)
                 }
             }
-        else if let token = accessToken{
-           completion(token)
+        }
+        else if let token = accessToken {
+            completion(token)
         }
     }
     
+    //MARK: - exchangeCodeForToken
     public func exchangeCodeForToken(code: String, completion: @escaping ((Bool) -> Void)) {
-       // get token
+        // get token
         guard let url = URL(string: Constant.tokenAPIURL) else {
             return
         }
@@ -102,7 +108,7 @@ final class AuthManger {
             return
         }
         request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
-        request.httpBody = component.query?.data(using: .utf8)
+        request.httpBody = component.query?.data(using: .utf8) // convert request body to data
         
         let task = URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
             guard let data = data , error == nil else {
@@ -124,8 +130,9 @@ final class AuthManger {
         
     }
     
+    //MARK: - refreshIfNeeded - check if we need then refresh token
     public func refreshIfNeeded(completion: @escaping (Bool) -> Void) {
-
+        
         guard !refreshingToken else {
             return
         }
@@ -135,57 +142,58 @@ final class AuthManger {
         }
         
         // refresh Token
-         guard let url = URL(string: Constant.tokenAPIURL) else {
-             return
-         }
+        guard let url = URL(string: Constant.tokenAPIURL) else {
+            return
+        }
         
         refreshingToken =  true
-         var component = URLComponents()
-         component.queryItems = [
-             URLQueryItem(name: "grant_type", value: "refresh_token"),
-             URLQueryItem(name: "refresh_token", value: refreshToken)
-         ]
-         var request = URLRequest(url: url)
-         request.httpMethod = "POST"
-         // set Headers
-         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-         let basicToken = Constant.clientID+":"+Constant.clientSecret
-         let data = basicToken.data(using: .utf8)
-         guard let base64String = data?.base64EncodedString() else {
-             print("Failure to get base64")
-             completion(false)
-             return
-         }
+        var component = URLComponents()
+        component.queryItems = [
+            URLQueryItem(name: "grant_type", value: "refresh_token"),
+            URLQueryItem(name: "refresh_token", value: refreshToken)
+        ]
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        // set Headers
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        let basicToken = Constant.clientID+":"+Constant.clientSecret
+        let data = basicToken.data(using: .utf8)
+        guard let base64String = data?.base64EncodedString() else {
+            print("Failure to get base64")
+            completion(false)
+            return
+        }
         /// Header for authorization
-         request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
-         request.httpBody = component.query?.data(using: .utf8)
-         
-         let task = URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
-             self?.refreshingToken = false
-             guard let data = data , error == nil else {
-                 completion(false)
-                 return
-             }
-             do {
-                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
-                 self?.onRefreshBlocks.forEach({$0(result.access_token) })
-                 self?.onRefreshBlocks.removeAll()
-                 self?.cacheToken(result: result)
-                 completion(true)
-             } catch  {
-                 print(error.localizedDescription)
-                 completion(false)
-             }
-         }
+        request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
+        request.httpBody = component.query?.data(using: .utf8)
         
-         task.resume()
+        let task = URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
+            self?.refreshingToken = false
+            guard let data = data , error == nil else {
+                completion(false)
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(AuthResponse.self, from: data)
+                self?.onRefreshBlocks.forEach({$0(result.access_token) })
+                self?.onRefreshBlocks.removeAll()
+                self?.cacheToken(result: result)
+                completion(true)
+            } catch  {
+                print(error.localizedDescription)
+                completion(false)
+            }
+        }
+        
+        task.resume()
         
     }
     
+    //MARK: - cacheToken save it in the UserDefaults
     private func cacheToken(result: AuthResponse) {
-
-            UserDefaults.standard.setValue(result.access_token,
-                                           forKey: "access_token")
+        
+        UserDefaults.standard.setValue(result.access_token,
+                                       forKey: "access_token")
         if let refresh_token = result.refresh_token {
             UserDefaults.standard.setValue(refresh_token,
                                            forKey: "refresh_token")

@@ -9,14 +9,17 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
+    //MARK: - UI Elments
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
     
+    //MARK: - Properties
     private var section = [Section]()
     
+    //MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configureModels()
@@ -32,7 +35,11 @@ class SettingsViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
+    //MARK: - API Caller methods
+    //TODO: fetch reponse from API Here
     
+    
+    //MARK: - UI Helpers
     private func configureModels() {
         section.append(Section(title: "Profile", options: [Option(title: "View your Profile", handler: { [weak self] in
             DispatchQueue.main.async {
@@ -58,6 +65,7 @@ class SettingsViewController: UIViewController {
     }
 }
 
+//MARK: - UITableViewDelegate, UITableViewDataSource
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     //MARK: - Table view
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -8,32 +8,36 @@
 import UIKit
 import SDWebImage
 
-class ProfileViewController: UIViewController , UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController  {
     
+    //MARK: - UI Elments
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifer)
         tableView.isHidden = true
         return tableView
     }()
     
+    //MARK: - Properties
+    static let cellIdentifer = "cell"
     private var models = [String]()
     
+    
+    //MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Profile"
-        tableView.delegate = self
-        tableView.dataSource = self
-        view.addSubview(tableView)
         view.backgroundColor = .systemBackground
+        configureTableview()
         self.fetchProfile()
     }
-    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+    
+    //MARK: - API Caller methods
     private func fetchProfile() {
         APICaller.shared.getCurrentUserProfile { [weak self] result in
             DispatchQueue.main.async {
@@ -48,6 +52,12 @@ class ProfileViewController: UIViewController , UITableViewDelegate, UITableView
         }
     }
     
+    //MARK: - UI Helpers
+    private func configureTableview() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        view.addSubview(tableView)
+    }
     private func updateUI(with model: UserProfile) {
         tableView.isHidden = false
         // configure table models
@@ -73,8 +83,8 @@ class ProfileViewController: UIViewController , UITableViewDelegate, UITableView
         imageView.layer.cornerRadius = imageSize/2
         tableView.tableHeaderView = headerView
         
-        
     }
+    
     private func failedToGetProfile() {
         let label = UILabel(frame: .zero)
         label.text = "Failed to load profile."
@@ -84,7 +94,10 @@ class ProfileViewController: UIViewController , UITableViewDelegate, UITableView
         label.center = view.center
     }
     
-    //MARK: - table view
+}
+
+//MARK: - UITableViewDelegate, UITableViewDataSource
+extension ProfileViewController:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count
     }

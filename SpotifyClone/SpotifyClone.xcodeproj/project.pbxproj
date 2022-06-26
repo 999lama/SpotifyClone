@@ -32,6 +32,7 @@
 		3BA3FFF528638C1B00F9524C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA3FFEE28638C1B00F9524C /* ProfileViewController.swift */; };
 		3BA3FFF72863B12800F9524C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA3FFF62863B12800F9524C /* Extensions.swift */; };
 		CEBB6FC82865F1F900082783 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB6FC72865F1F900082783 /* AuthResponse.swift */; };
+		CED19145286889E0008DC0E1 /* APICallerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED19144286889E0008DC0E1 /* APICallerProfile.swift */; };
 		CEE8719D28662DE4003CA2D2 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE8719C28662DE4003CA2D2 /* SettingsModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		3BA3FFF62863B12800F9524C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		716A44A7650E0EE673E1C389 /* Pods-SpotifyClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyClone.debug.xcconfig"; path = "Target Support Files/Pods-SpotifyClone/Pods-SpotifyClone.debug.xcconfig"; sourceTree = "<group>"; };
 		CEBB6FC72865F1F900082783 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		CED19144286889E0008DC0E1 /* APICallerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICallerProfile.swift; sourceTree = "<group>"; };
 		CEE8719C28662DE4003CA2D2 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		ED48CDA71EBFE30B66A5E98A /* Pods-SpotifyClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyClone.release.xcconfig"; path = "Target Support Files/Pods-SpotifyClone/Pods-SpotifyClone.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				3BA3FFCC28638BAD00F9524C /* APICaller.swift */,
+				CED19144286889E0008DC0E1 /* APICallerProfile.swift */,
 				3BA3FFCD28638BAD00F9524C /* AuthManger.swift */,
 				3BA3FFCE28638BAD00F9524C /* HapsticManger.swift */,
 			);
@@ -209,7 +212,6 @@
 				716A44A7650E0EE673E1C389 /* Pods-SpotifyClone.debug.xcconfig */,
 				ED48CDA71EBFE30B66A5E98A /* Pods-SpotifyClone.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -334,6 +336,7 @@
 				3BA3FFD028638BAD00F9524C /* AuthManger.swift in Sources */,
 				3BA3FFE428638C1100F9524C /* TabBarViewController.swift in Sources */,
 				3BA3FFF028638C1B00F9524C /* AuthViewController.swift in Sources */,
+				CED19145286889E0008DC0E1 /* APICallerProfile.swift in Sources */,
 				3BA3FFDB28638BCD00F9524C /* UserProfile.swift in Sources */,
 				CEBB6FC82865F1F900082783 /* AuthResponse.swift in Sources */,
 				3BA3FFDA28638BCD00F9524C /* Playlist.swift in Sources */,

@@ -9,48 +9,28 @@ import Foundation
 
 final class APICaller {
     
+    //MARK: - shared propety
     static let shared = APICaller()
     
+    //MARK: - init
     private init() {}
     
+    //MARK: - Constants
     struct Constant {
         static let baseAPIURL = "https://api.spotify.com/v1"
     }
+    //MARK: - APIError
     enum APIError: Error {
         case faileedToGetData
     }
-    public func getCurrentUserProfile(completion: @escaping (Result<UserProfile, Error>) -> Void) {
-        
-        createRequest(with: URL(string: Constant.baseAPIURL + "/me"),
-        type: .GET) { request in
-            let task = URLSession.shared.dataTask(with: request) { data, _, error in
-                
-                guard let data = data, error == nil else {
-                    completion(.failure(APIError.faileedToGetData))
-                    return
-                }
-                
-                do {
-                    let result = try JSONDecoder().decode(UserProfile.self, from: data)
-                    completion(.success(result))
-                    print(result)
-                } catch  {
-                    completion(.failure(error))
-                }
-
-            }
-            task.resume()
-        }
-        
-    }
-    
-    enum HTTPMethod: String{
+    //MARK: - HTTPMethod
+    enum HTTPMethod: String {
         case GET
         case POST
     }
     
-    //MARK: - Private
-    private func createRequest(with url: URL?,
+    //MARK: - createRequest
+     func createRequest(with url: URL?,
                                type: HTTPMethod,
                                completion: @escaping (URLRequest)-> Void) {
         AuthManger.shared.withVaildToken { token in
@@ -66,4 +46,6 @@ final class APICaller {
             completion(request)
         }
     }
+
 }
+

@@ -9,24 +9,30 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
     
+    //MARK: - UI Elments
     private let singInButton: UIButton = {
-      let button = UIButton()
+        let button = UIButton()
         button.backgroundColor = .white
         button.setTitle("Sign In with spotify", for: .normal)
         button.setTitleColor(.blue, for: .normal)
         return button
     }()
-
+    
+    
+    //MARK: - Properties
+    //TODO: Add view property here
+    
+    //MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       title = "Spotify"
+        
+        title = "Spotify"
         view.backgroundColor = .systemGreen
         view.addSubview(singInButton)
         singInButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
     }
     
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         singInButton.frame = CGRect(x: 20,
@@ -36,6 +42,8 @@ class WelcomeViewController: UIViewController {
         
     }
     
+    
+    //MARK: - @objc action methods
     @objc func didTapSignIn() {
         let vc = AuthViewController()
         vc.competionHandler = { [weak self] (sucess) in
@@ -46,7 +54,8 @@ class WelcomeViewController: UIViewController {
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
-
+    
+    //MARK: - UI Helpers
     private func handleuserSignIn(sucess: Bool) {
         // Log user in or yall at them for error
         guard sucess else {
