@@ -36,6 +36,7 @@ class TabBarViewController: UITabBarController {
     private func configureTabBar(with nav: UINavigationController , imageName: String, title: String, tag: Int) -> UINavigationController {
         nav.tabBarItem = UITabBarItem(title: title, image: UIImage(systemName: imageName), tag: tag)
         nav.navigationBar.prefersLargeTitles = true
+        nav.navigationBar.tintColor = .label
         return nav
     }
 }
