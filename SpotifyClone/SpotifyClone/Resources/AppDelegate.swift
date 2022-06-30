@@ -29,6 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AuthManger.shared.refreshIfNeeded { sucess in
             print(sucess)
         }
+
+        if #available(iOS 13.0, *) {
+            window.overrideUserInterfaceStyle = .dark
+            }
+        
         return true
     }
     
