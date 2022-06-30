@@ -26,6 +26,7 @@ class TabBarViewController: UITabBarController {
         tabs.append(self.configureTabBar(with: nav3, imageName: "music.note.list", title: "Libary", tag: 3))
         return tabs
     }
+    
     private func configureNav(vc: UIViewController, with title: String) -> UINavigationController {
         vc.title = title
         vc.navigationItem.largeTitleDisplayMode = .always
