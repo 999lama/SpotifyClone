@@ -13,6 +13,7 @@ class TabBarViewController: UITabBarController {
     //MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         setViewControllers(self.confiureTabs(), animated: false)
     }
     
