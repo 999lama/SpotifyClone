@@ -81,6 +81,7 @@ class ProfileViewController: UIViewController  {
         imageView.sd_setImage(with: url, completed: nil)
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = imageSize/2
+        headerView.addSubview(imageView)
         tableView.tableHeaderView = headerView
         
     }
