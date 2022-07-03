@@ -43,6 +43,7 @@
 		CEC53C5F286DE512003E5E43 /* NewRelaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC53C5E286DE512003E5E43 /* NewRelaseCollectionViewCell.swift */; };
 		CEC53C61286DE520003E5E43 /* FeaturePlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC53C60286DE520003E5E43 /* FeaturePlaylistCollectionViewCell.swift */; };
 		CEC53C63286DE54D003E5E43 /* RecommendedTrackCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC53C62286DE54D003E5E43 /* RecommendedTrackCollectionViewCell.swift */; };
+		CEC53C87286EF7C4003E5E43 /* NewRelasesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC53C86286EF7C4003E5E43 /* NewRelasesCellViewModel.swift */; };
 		CED19145286889E0008DC0E1 /* APICallerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED19144286889E0008DC0E1 /* APICallerProfile.swift */; };
 		CEE8719D28662DE4003CA2D2 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE8719C28662DE4003CA2D2 /* SettingsModel.swift */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 		CEC53C5E286DE512003E5E43 /* NewRelaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRelaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEC53C60286DE520003E5E43 /* FeaturePlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturePlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
 		CEC53C62286DE54D003E5E43 /* RecommendedTrackCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedTrackCollectionViewCell.swift; sourceTree = "<group>"; };
+		CEC53C86286EF7C4003E5E43 /* NewRelasesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRelasesCellViewModel.swift; sourceTree = "<group>"; };
 		CED19144286889E0008DC0E1 /* APICallerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICallerProfile.swift; sourceTree = "<group>"; };
 		CEE8719C28662DE4003CA2D2 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		ED48CDA71EBFE30B66A5E98A /* Pods-SpotifyClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyClone.release.xcconfig"; path = "Target Support Files/Pods-SpotifyClone/Pods-SpotifyClone.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		3BA3FFD228638BB100F9524C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CEC53C86286EF7C4003E5E43 /* NewRelasesCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				3BA3FFDA28638BCD00F9524C /* Playlist.swift in Sources */,
 				3BA3FFD928638BCD00F9524C /* AudioTrack.swift in Sources */,
 				3BA3FFF228638C1B00F9524C /* WelcomeViewController.swift in Sources */,
+				CEC53C87286EF7C4003E5E43 /* NewRelasesCellViewModel.swift in Sources */,
 				CEC53C4D286C5DAD003E5E43 /* NewRelasesRespones.swift in Sources */,
 				CEE8719D28662DE4003CA2D2 /* SettingsModel.swift in Sources */,
 				3BA3FFEF28638C1B00F9524C /* SettingsViewController.swift in Sources */,
