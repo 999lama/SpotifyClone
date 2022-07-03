@@ -10,7 +10,7 @@ import Foundation
 extension APICaller {
     //MARK: - getFeaturedPlaylists
     public func getFeaturedPlaylists(completion: @escaping ((Result<FeaturedPlaylistResponse, Error>) -> Void)) {
-        createRequest(with: URL(string: Constant.baseAPIURL + "/browse/featured-playlists?limit=2"),
+        createRequest(with: URL(string: Constant.baseAPIURL + "/browse/featured-playlists?limit=20"),
                       type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
                 guard let data = data else {
