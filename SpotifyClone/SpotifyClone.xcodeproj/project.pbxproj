@@ -31,6 +31,8 @@
 		3BA3FFF428638C1B00F9524C /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA3FFED28638C1B00F9524C /* SearchResultViewController.swift */; };
 		3BA3FFF528638C1B00F9524C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA3FFEE28638C1B00F9524C /* ProfileViewController.swift */; };
 		3BA3FFF72863B12800F9524C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA3FFF62863B12800F9524C /* Extensions.swift */; };
+		CE04B0A52871CFE300772EB1 /* FeaturedPlayListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04B0A42871CFE300772EB1 /* FeaturedPlayListCellViewModel.swift */; };
+		CE04B0A72871D02900772EB1 /* RecommendedTrackCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04B0A62871D02900772EB1 /* RecommendedTrackCellViewModel.swift */; };
 		CEBB6FC82865F1F900082783 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB6FC72865F1F900082783 /* AuthResponse.swift */; };
 		CEC53C4D286C5DAD003E5E43 /* NewRelasesRespones.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC53C4C286C5DAD003E5E43 /* NewRelasesRespones.swift */; };
 		CEC53C4F286C5EE5003E5E43 /* APIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC53C4E286C5EE5003E5E43 /* APIImage.swift */; };
@@ -76,6 +78,8 @@
 		3BA3FFEE28638C1B00F9524C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3BA3FFF62863B12800F9524C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		716A44A7650E0EE673E1C389 /* Pods-SpotifyClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyClone.debug.xcconfig"; path = "Target Support Files/Pods-SpotifyClone/Pods-SpotifyClone.debug.xcconfig"; sourceTree = "<group>"; };
+		CE04B0A42871CFE300772EB1 /* FeaturedPlayListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPlayListCellViewModel.swift; sourceTree = "<group>"; };
+		CE04B0A62871D02900772EB1 /* RecommendedTrackCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedTrackCellViewModel.swift; sourceTree = "<group>"; };
 		CEBB6FC72865F1F900082783 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		CEC53C4C286C5DAD003E5E43 /* NewRelasesRespones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRelasesRespones.swift; sourceTree = "<group>"; };
 		CEC53C4E286C5EE5003E5E43 /* APIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIImage.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				CEC53C86286EF7C4003E5E43 /* NewRelasesCellViewModel.swift */,
+				CE04B0A42871CFE300772EB1 /* FeaturedPlayListCellViewModel.swift */,
+				CE04B0A62871D02900772EB1 /* RecommendedTrackCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -409,9 +415,11 @@
 				CEC53C5C286DD2E6003E5E43 /* RecommenationResponse.swift in Sources */,
 				CEC53C53286DBFDE003E5E43 /* RecommenededGenerasResponse.swift in Sources */,
 				3BA3FFB928638B7200F9524C /* SceneDelegate.swift in Sources */,
+				CE04B0A52871CFE300772EB1 /* FeaturedPlayListCellViewModel.swift in Sources */,
 				3BA3FFCF28638BAD00F9524C /* APICaller.swift in Sources */,
 				CEC53C55286DD1A6003E5E43 /* APICallerRecommenation.swift in Sources */,
 				3BA3FFD828638BCD00F9524C /* Artist.swift in Sources */,
+				CE04B0A72871D02900772EB1 /* RecommendedTrackCellViewModel.swift in Sources */,
 				CEC53C51286C69C7003E5E43 /* FeaturedPlaylistResponse.swift in Sources */,
 				3BA3FFF528638C1B00F9524C /* ProfileViewController.swift in Sources */,
 				CEC53C63286DE54D003E5E43 /* RecommendedTrackCollectionViewCell.swift in Sources */,
