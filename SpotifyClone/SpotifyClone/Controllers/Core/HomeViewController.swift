@@ -70,9 +70,10 @@ class HomeViewController: UIViewController {
         group.enter()
         group.enter()
         group.enter()
+        
         var newReleases: NewRelasesResponse?
         var featuredPlaylist: FeaturedPlaylistResponse?
-        var recommenedation: RecommenationResponse?
+        var recommendations: RecommenationResponse?
         // New Relasess
         APICaller.shared.getNewReslase { result in
             defer {
@@ -98,34 +99,38 @@ class HomeViewController: UIViewController {
             }
         }
         // Recommended Tracks
-        APICaller.shared.getRecommendedGeners { result in
-            switch result {
-            case.success(let model):
-                let geners = model.genres
-                var seeds = Set<String>()
-                while seeds.count < 5 {
-                    if let random = geners.randomElement() {
-                        seeds.insert(random)
-                    }
-                }
-                
-                APICaller.shared.getRecommenations(genres: seeds) { recommndedResult in
-                    defer {
-                        group.leave()
-                    }
-                    switch recommndedResult {
-                    case .success(let model):
-                        recommenedation = model
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+               APICaller.shared.gerRecommendedGenres { result in
+                   switch result {
+                   case .success(let model):
+                       let genres = model.genres
+                       var seeds = Set<String>()
+                       while seeds.count < 5 {
+                           if let random = genres.randomElement() {
+                               seeds.insert(random)
+                           }
+                       }
+
+                       APICaller.shared.getRecommendations(genres: seeds) { recommendedResult in
+                           defer {
+                               group.leave()
+                           }
+
+                           switch recommendedResult {
+                           case .success(let model):
+                               recommendations = model
+                               print(model)
+                           case .failure(let error):
+                               print(error.localizedDescription)
+                           }
+                       }
+
+                   case .failure(let error):
+                       print(error.localizedDescription)
+                   }
+               }
+        
         group.notify(queue: .main) {
-            guard let recommenedation = recommenedation?.tracks ,
+            guard let recommenedation = recommendations?.tracks ,
                   let playList = featuredPlaylist?.playlists.items,
                   let newReleases = newReleases?.albums.items else {
                 fatalError("models are null")
@@ -146,6 +151,7 @@ class HomeViewController: UIViewController {
         })))
         sections.append(.featuredPlayList(viewModel: []))
         sections.append(.recommendedTracks(viewModel: []))
+        self.collectionView.reloadData()
     }
     //MARK: - @objc actions methods
     @objc func didTapSettings() {
@@ -184,6 +190,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 return UICollectionViewCell()
             }
             let viewModel = viewModel[indexPath.row]
+            cell.configureWithViewModel(with: viewModel)
             cell.backgroundColor = .red
             return cell
         case .featuredPlayList(let viewModel):

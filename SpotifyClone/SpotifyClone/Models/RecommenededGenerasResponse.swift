@@ -10,3 +10,4 @@ import Foundation
 struct RecmmendedGenerasResponse: Codable {
     let genres: [String]
 }
+
