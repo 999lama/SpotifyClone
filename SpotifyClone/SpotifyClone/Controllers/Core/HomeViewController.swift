@@ -17,6 +17,9 @@ class HomeViewController: UIViewController {
 
 
     private var sections = [BrowseSectionType]()
+    private var newAlbums: [Album] = []
+    private var tracks: [AudioTrack] = []
+    private var playList: [Playlist] = []
     
     //MARK: - UI Elments
     private var collectionView: UICollectionView = UICollectionView(frame: .zero,
@@ -146,6 +149,10 @@ class HomeViewController: UIViewController {
     private func configureModels(newAlbums: [Album],
                                  tracks: [AudioTrack],
                                  playList: [Playlist]) {
+        
+        self.newAlbums = newAlbums
+        self.tracks = tracks
+        self.playList = playList
         sections.append(.newRelases(viewModel: newAlbums.compactMap({ return NewRelasesCellViewModel(name: $0.name,
                                                                                                      artWorkURL: URL(string: $0.images.first?.url ?? ""), numberOfTracks: $0.total_tracks, artistName: $0.name)
         })))
@@ -228,6 +235,25 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.backgroundColor = .blue
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let section = sections[indexPath.section]
+        switch section {
+        case .recommendedTracks:
+            break
+        case .featuredPlayList:
+            let playList = playList[indexPath.item]
+            let vc = PlaylistViewController(playlist: playList)
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+
+        case .newRelases:
+            let album = newAlbums[indexPath.item]
+            let vc = AlbumViewController(album: album)
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {

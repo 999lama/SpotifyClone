@@ -29,4 +29,23 @@ extension APICaller {
             task.resume()
         }
     }
+    
+    
+    public func getPlayllistDetails(for playList: Playlist, completion: @escaping (Result<PlayListDetailsResponse, Error>) -> Void) {
+        createRequest(with: URL(string: Constant.baseAPIURL + "/playlists/" + playList.id), type: .GET) { request in
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.faileedToGetData))
+                    return
+                }
+                do {
+                    let result = try JSONDecoder().decode(PlayListDetailsResponse.self, from: data)
+                    completion(.success(result))
+                } catch  {
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
 }
