@@ -8,8 +8,7 @@
 import UIKit
 
 class PlaylistViewController: UIViewController {
-   
-
+    
     private let playlist: Playlist
     private var viewModels = [RecommendedTrackCellViewModel]()
     private let collectionView = UICollectionView(frame: .zero,
